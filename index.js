@@ -1,18 +1,19 @@
 const playBtn = document.getElementById("playBtn"),
 stopBtn = document.getElementById("stopBtn"),
 progressBar = document.getElementById("progressBar"),
-videoPlayTime = document.getElementById("videoPlayTime");
+videoPlayTime = document.getElementById("videoPlayTime"),
+video = document.getElementById("video");
 
-let initTime = new Date(0);
+function playVid(){
+    const seconds = Math.ceil(video.currentTime);
+    const minutes = Math.floor(seconds/60);
+    videoPlayTime.innerHTML = `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+}
 
 function handlePlay(){
-  setInterval(()=>{
-      initTime+=1;
-      videoPlayTime.innerHTML = initTime;
-}
-  
-  ,1000);
-    
+
+  setInterval(playVid,1000);
+video.play();    
 }
 
 function init(){
